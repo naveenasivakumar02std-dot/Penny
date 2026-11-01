@@ -1,0 +1,418 @@
+:root{--ink:#343932;--muted:#92988e;--paper:#faf9f5;--white:#fffefa;--green:#58785e;--green-dark:#3f5f49;--green-pale:#eaf0e7;--line:#eceae2;--peach:#f7e8df;--lilac:#eee9f7;--gold:#f4edcf;--font:'Lato',sans-serif;--display:'Lato',sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font);padding:0 30px 70px}
+button,input,select{font:inherit}
+button{cursor:pointer}
+.app-shell{width:min(100%,1160px);margin:0 auto}
+.topbar{height:76px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #efede6}
+.brand{display:flex;align-items:center;gap:9px;color:var(--ink);font:900 22px var(--display);letter-spacing:-.7px;text-decoration:none}
+.topbar-right{display:flex;align-items:center;gap:15px}
+.today-chip{color:#848b80;font-size:11px;font-weight:600}
+.top-add{height:40px;padding:0 15px;border:0;border-radius:13px;background:var(--green);color:white;font-size:11px;font-weight:700;box-shadow:0 5px 12px #47664a22}
+.top-add span{font-size:16px;vertical-align:-1px;margin-right:5px}
+.welcome-row{display:flex;justify-content:space-between;align-items:center;padding:27px 2px 21px;position:relative;overflow:hidden}
+.eyebrow{margin:0 0 8px;color:#92988d;font-size:9px;font-weight:700;letter-spacing:.14em}
+.eyebrow span{color:#d3ae62;margin-left:3px}
+h1,h2,p{margin-top:0}
+.welcome-row h1{font:900 29px/1.14 var(--display);letter-spacing:-.8px;margin:0;color:#343a33}
+.welcome-note{margin:7px 0 0;font-size:11px;color:#898f85}
+.welcome-art{position:relative;width:150px;height:85px;margin-right:35px}
+.mobile-break{display:none}
+.metric-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
+.metric-card{min-height:130px;padding:17px 19px 14px;border:1px solid var(--line);border-radius:19px;background:var(--white);position:relative;overflow:hidden}
+.balance-metric{background:#e9f0e6;border-color:#e4ebe0}.month-metric{background:#f8ede6;border-color:#f1e6dd}.alltime-metric{background:#f0ecf7;border-color:#eae5f0}
+.metric-label{display:flex;align-items:center;gap:7px;color:#7b8577;font-size:9px;font-weight:700;letter-spacing:.09em}
+.metric-icon{width:21px;height:21px;display:grid;place-items:center;border-radius:8px;background:#ffffff8c;color:#66806a;font-size:12px}
+.month-metric .metric-icon{color:#ad806e}.alltime-metric .metric-icon{color:#8a7da7}
+.metric-card>strong{display:block;margin-top:11px;font:900 27px/1.1 var(--display);letter-spacing:-.7px;color:#354238;position:relative;z-index:1}
+.metric-foot{display:flex;align-items:center;gap:6px;margin-top:7px;font-size:9px;color:#8a9187;position:relative;z-index:1}
+.metric-dot{width:6px;height:6px;border-radius:50%;background:#86a481}
+.dashboard-grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(320px,.9fr);gap:15px;margin-top:16px;align-items:stretch}
+.panel{border:1px solid var(--line);border-radius:20px;background:var(--white);padding:19px 20px;box-shadow:0 5px 18px #4a513a05;min-width:0}
+.spending-panel,.accounts-panel{min-height:300px}
+.panel-heading{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.panel-heading .eyebrow{margin-bottom:5px}
+.panel-heading h2{margin:0;font:800 18px/1.2 var(--display);letter-spacing:-.35px}
+.panel-subtitle{margin:5px 0 0;color:#979b92;font-size:10px;line-height:1.45}
+.chart-controls{display:flex;align-items:center;gap:4px;flex-shrink:0;padding:3px;border-radius:11px;background:#f5f3ed}
+.range-button{border:0;border-radius:8px;background:transparent;padding:7px 9px;color:#858b81;font-size:9px;font-weight:600;white-space:nowrap}
+.range-button.selected{background:#fffefa;color:#527356;box-shadow:0 1px 5px #30372d16}
+.chart-content{display:flex;align-items:center;gap:24px;min-height:207px;padding:13px 6px 0}
+.chart-content[hidden],.chart-empty-state[hidden]{display:none!important}
+.chart-wrap{width:190px;height:190px;flex:0 0 190px;display:grid;place-items:center}
+.pie{width:184px;height:184px;border-radius:50%;background:conic-gradient(#e9e6de 0 100%);position:relative}
+.pie-hole{position:absolute;inset:48px;border-radius:50%;background:var(--white);display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center}
+.pie-caption{max-width:85px;font-size:8px;line-height:1.2;letter-spacing:.11em;font-weight:700;color:#9ca194}
+.pie-hole strong{margin-top:5px;font:800 15px var(--display);color:#414a40}
+.pie-hole small{margin-top:1px;color:#a3a59b;font-size:8px}
+.legend{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px;max-height:198px;overflow:auto;padding-right:2px}
+.legend-row{display:grid;grid-template-columns:9px minmax(65px,1fr) auto;gap:7px;align-items:center;padding:7px 0;border-bottom:1px solid #f2f0ea;font-size:10px}
+.legend-row:last-child{border-bottom:0}
+.legend-dot{width:8px;height:8px;border-radius:50%}
+.legend-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#70776d}
+.legend-value{font-weight:700;color:#50584f;white-space:nowrap}
+.legend-value small{margin-left:4px;color:#a0a397;font-size:8px;font-weight:500}
+.chart-empty-state{display:flex;align-items:center;gap:13px;min-height:180px;padding:15px 11px}
+.chart-empty-state b{display:block;font:800 13px var(--display);color:#596456}
+.chart-empty-state small{display:block;margin-top:4px;color:#9a9f94;font-size:10px;line-height:1.5}
+.quiet-button{border:0;border-radius:9px;background:#f5f5ef;padding:8px 10px;color:#617d62;font-size:9px;font-weight:700;white-space:nowrap}
+.quiet-button span{margin-left:4px}
+.accounts-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:25px}
+.account-card{border:1px solid #e9ede5;border-radius:16px;padding:14px 13px;background:#f0f4ec;min-width:0;overflow:hidden}
+.account-color-2{background:#faf2e7;border-color:#f1e8da}
+.account-card-top{display:flex;align-items:center;gap:6px;min-width:0}
+.account-emoji{width:25px;height:25px;display:grid;place-items:center;border-radius:9px;background:#ffffffa6;font-size:13px;flex:0 0 auto}
+.account-name{color:#667063;font-size:10px;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.account-status{margin-left:auto;color:#a5aa9f;font-size:8px;letter-spacing:.08em}
+.account-card strong{display:block;margin-top:17px;color:#354238;font:900 20px/1.1 var(--display);letter-spacing:-.4px;white-space:nowrap}
+.account-card small{display:block;margin-top:4px;color:#969b90;font-size:8px}
+.balance-track{height:4px;margin-top:13px;border-radius:5px;background:#ffffffb8;overflow:hidden}
+.balance-track span{display:block;height:100%;border-radius:inherit;background:#88a781}
+.account-color-2 .balance-track span{background:#d7b678}
+.account-note{display:flex;align-items:center;gap:7px;margin-top:16px;color:#93998e;font-size:9px}
+.account-note span{color:#d2ad61}
+.activity-panel{grid-column:1/-1;padding-bottom:10px}
+.activity-heading{align-items:center;margin-bottom:12px}
+.recent-card{border-top:1px solid #f0eee8}
+.payment-row{display:grid;grid-template-columns:minmax(190px,1fr) minmax(120px,.55fr) 90px auto 28px;align-items:center;gap:12px;padding:10px 5px;border-bottom:1px solid #f1efe9}
+.payment-row:last-child{border-bottom:0}
+.payment-info{display:grid;grid-template-columns:36px minmax(0,1fr);grid-template-rows:auto auto;column-gap:10px;align-items:center;min-width:0}
+.payment-emoji{grid-row:1/3;width:34px;height:34px;border-radius:12px;display:grid;place-items:center;font-size:15px}
+.payment-category{font-size:10px;font-weight:700;color:#4f584d}
+.payment-note{margin-top:3px;color:#989d93;font-size:9px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.payment-note span{color:#aaada5}
+.payment-date{color:#8d9389;font-size:9px}
+.payment-right{text-align:right}
+.payment-amount{font-size:11px;font-weight:700;color:#495347;white-space:nowrap}
+.edit-payment{border:0;background:transparent;color:#afb2a8;font-size:15px;padding:6px}
+.recent-card.is-empty{padding:0 0 5px}
+.empty-recent{display:flex;align-items:center;justify-content:center;gap:9px;min-height:77px;color:#969b91;font-size:10px}
+.empty-recent span:first-child{width:31px;height:31px;border-radius:11px;background:#f7e9e9;display:grid;place-items:center;font-size:16px}
+.fab{display:none}
+
+/* Entry dialogs */
+.dialog{border:0;padding:0;border-radius:25px 25px 0 0;width:min(100%,520px);max-width:none;margin:auto auto 0;background:var(--white);color:var(--ink);box-shadow:0 -10px 50px #23291b22;max-height:92dvh;overflow:auto}
+.dialog::backdrop{background:#26302466;backdrop-filter:blur(2px)}
+.dialog form{padding:13px 22px max(24px,env(safe-area-inset-bottom))}
+.dialog-grab{height:4px;width:38px;border-radius:5px;background:#e4e2db;margin:0 auto 20px}
+.dialog-heading{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:21px}
+.dialog-heading .eyebrow{margin-bottom:5px}
+.dialog h2{font:800 20px var(--display);letter-spacing:-.4px;margin:0}
+.close-button{border:0;border-radius:50%;width:30px;height:30px;background:#f3f1e9;color:#777c72;font-size:21px;line-height:1}
+.field-label{display:block;font-size:11px;font-weight:700;margin:0 0 8px}
+.amount-field{display:flex;align-items:center;border:1px solid #eae8df;border-radius:14px;height:58px;padding:0 15px;margin-bottom:19px;color:#789276}
+.amount-field span{font:800 22px var(--display);margin-right:8px}
+.amount-field input{border:0;outline:0;background:transparent;width:100%;font:800 25px var(--display);color:var(--ink)}
+input::placeholder{color:#c3c4bb}
+.form-row{display:flex;justify-content:space-between;align-items:center}
+.inline-add{border:0;background:transparent;color:#6b8a6b;font:700 10px var(--font);padding:0 0 8px}
+.category-options{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:19px}
+.category-chip{border:1px solid transparent;border-radius:12px;padding:9px 5px 8px;background:#f7f5ef;display:flex;flex-direction:column;align-items:center;gap:5px;color:#62685f;font:600 9px var(--font);min-width:0}
+.category-chip .chip-emoji{font-size:17px}
+.category-chip.selected{border-color:#759675;background:#eef4eb;color:#48664c;box-shadow:0 0 0 1px #759675}
+.text-input{width:100%;height:46px;border:1px solid #eae8df;border-radius:13px;padding:0 13px;background:white;outline:none;color:var(--ink);font:12px var(--font)}
+.text-input:focus,.amount-field:focus-within{border-color:#83a181}
+.note-label{margin:0 0 8px}
+.note-label span{color:#a0a399;font-weight:400}
+.submit-button{width:100%;height:51px;border:0;border-radius:15px;background:#55775e;color:white;font:700 12px var(--font);margin-top:21px}
+.submit-button span{margin-left:5px;color:#d5e2c9}
+.small-dialog{border-radius:25px}
+.color-label{margin:18px 0 10px}
+.color-options{display:flex;gap:11px}
+.color-choice{width:30px;height:30px;border:2px solid white;border-radius:50%;box-shadow:0 0 0 1px #e5e2d8;position:relative}
+.color-choice.selected:after{content:'✓';position:absolute;inset:0;display:grid;place-items:center;color:#3e5140;font-size:13px;font-weight:700}
+.delete-category{display:block;border:0;background:transparent;color:#b46b61;font:600 11px var(--font);margin:14px auto 0;padding:6px}
+.manage-list{display:flex;flex-direction:column;gap:7px;max-height:45dvh;overflow:auto}
+.manage-row{display:flex;align-items:center;gap:10px;background:#f8f6f0;border-radius:13px;padding:10px 12px}
+.manage-row .payment-emoji{width:32px;height:32px;border-radius:11px}
+.manage-row .manage-name{font-size:11px;font-weight:700;flex:1}
+.manage-row .manage-count{font-size:9px;color:#9a9e95}
+.manage-edit{border:0;background:transparent;color:#6f8b70;font:700 10px var(--font);padding:8px}
+.manage-add{margin-top:13px}
+.account-help{font-size:10px;line-height:1.5;color:#8d9288;margin:-9px 0 16px}
+.account-edit-fields{display:flex;flex-direction:column}
+.account-edit-fields .field-label{margin-top:10px}
+.compact-amount{height:44px;margin:0;padding:0 12px}
+.compact-amount span{font-size:17px}
+.compact-amount input{font-size:17px}
+.toast{position:fixed;z-index:9;left:50%;bottom:25px;transform:translate(-50%,12px);background:#343d35;color:white;border-radius:12px;padding:10px 15px;font-size:11px;opacity:0;pointer-events:none;transition:.2s;white-space:nowrap}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+[hidden]{display:none!important}
+
+@media(max-width:800px){body{padding:0 22px 50px}.app-shell{max-width:680px}.dashboard-grid{grid-template-columns:minmax(0,1.1fr) minmax(260px,.9fr)}.panel{padding:17px}.chart-content{gap:12px}.chart-wrap{width:160px;height:160px;flex-basis:160px}.pie{width:156px;height:156px}.pie-hole{inset:40px}.legend-row{font-size:9px}.payment-row{grid-template-columns:minmax(160px,1fr) 75px auto 25px;gap:9px}.payment-date{display:none}}
+@media(max-width:600px){body{padding:0 16px 95px}.topbar{height:62px}.today-chip{font-size:10px}.top-add{display:none}.welcome-row{padding:22px 1px 17px}.welcome-row h1{font-size:25px}.welcome-note{max-width:260px;font-size:10px}.welcome-art{width:82px;height:65px;margin-right:2px}.metric-grid{gap:7px}.metric-card{min-height:110px;padding:12px 10px;border-radius:15px}.metric-label{gap:4px;font-size:7px;letter-spacing:.045em}.metric-icon{width:18px;height:18px;border-radius:6px;font-size:10px}.metric-card>strong{font-size:19px;margin-top:11px;letter-spacing:-.5px}.metric-foot{font-size:8px;margin-top:7px}.dashboard-grid{grid-template-columns:1fr;gap:11px;margin-top:12px}.panel{padding:15px 14px;border-radius:17px}.spending-panel,.accounts-panel{min-height:0}.panel-heading h2{font-size:16px}.panel-subtitle{font-size:9px}.eyebrow{font-size:8px}.chart-controls{padding:2px}.range-button{padding:6px 7px;font-size:8px}.chart-content{min-height:170px;gap:12px;padding:10px 0 0}.chart-wrap{width:145px;height:145px;flex-basis:145px}.pie{width:140px;height:140px}.pie-hole{inset:36px}.pie-caption{font-size:7px}.pie-hole strong{font-size:12px}.legend{max-height:160px}.legend-row{grid-template-columns:8px minmax(45px,1fr) auto;gap:5px;padding:6px 0;font-size:9px}.legend-value small{font-size:7px}.chart-empty-state{min-height:115px;padding:10px 3px}.chart-empty-state b{font-size:12px}.chart-empty-state small{font-size:9px}.accounts-grid{margin-top:17px;gap:8px}.account-card{padding:11px 10px;border-radius:14px}.account-card strong{font-size:17px;margin-top:13px}.account-note{font-size:8px;margin-top:12px}.activity-panel{grid-column:auto}.activity-heading{align-items:center}.quiet-button{padding:7px 8px;font-size:8px}.payment-row{grid-template-columns:minmax(0,1fr) auto 25px;gap:8px;padding:10px 1px}.payment-date{display:block;grid-column:2;grid-row:1;color:#92978d;font-size:8px}.payment-info{grid-column:1;grid-row:1/3}.payment-right{grid-column:2;grid-row:2}.edit-payment{grid-column:3;grid-row:1/3}.payment-amount{font-size:10px}.payment-note{max-width:190px}.fab{display:flex;position:fixed;z-index:5;bottom:max(18px,env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);height:51px;padding:0 23px;border:0;border-radius:16px;background:#52745a;color:#fffefa;font:700 12px var(--font);box-shadow:0 7px 20px #435a4550;align-items:center;gap:8px;white-space:nowrap}.fab-plus{font-size:20px;font-weight:400}.dialog{margin:auto auto 0}.dialog form{padding:13px 22px max(24px,env(safe-area-inset-bottom))}.dialog-grab{display:block}.toast{bottom:82px}}
+@media(max-width:370px){body{padding-left:12px;padding-right:12px}.metric-grid{gap:5px}.metric-card{padding-left:8px;padding-right:8px}.metric-label{font-size:6.5px}.metric-card>strong{font-size:17px}.chart-content{gap:8px}.chart-wrap{width:124px;height:124px;flex-basis:124px}.pie{width:120px;height:120px}.pie-hole{inset:31px}.range-button{padding:6px 5px}.panel{padding-left:12px;padding-right:12px}}
+
+/* Finance themed visual details */
+.empty-chart-icon{width:53px;height:53px;display:grid;place-items:center;border-radius:17px;background:conic-gradient(#86a885 0 29%,#e5c779 29% 48%,#dca58f 48% 72%,#dfe9d9 72%);color:#fffefa;font-size:29px;line-height:1;flex:0 0 auto;box-shadow:inset 0 0 0 7px #fffefa}
+@media(max-width:600px){.empty-chart-icon{width:45px;height:45px;border-radius:15px;font-size:24px;box-shadow:inset 0 0 0 6px #fffefa}}
+
+/* Lighter typography: financial figures carry the emphasis. */
+.brand,.top-add,.eyebrow,.metric-label,.range-button,.quiet-button,.account-name,.payment-category,.field-label,.category-chip,.manage-name{font-weight:500}
+.welcome-row h1,.panel-heading h2{font-weight:500}
+.dialog h2{font-weight:500}
+.pie-caption{font-weight:500}
+.metric-foot,.account-note,.payment-note,.panel-subtitle,.today-chip{font-weight:400}
+.metric-card>strong,.account-card strong,.payment-amount{font-weight:700}
+.legend-value{font-weight:600}
+.submit-button{font-weight:500}
+
+@media(max-width:600px){
+  body{padding:0 14px calc(88px + env(safe-area-inset-bottom))}
+  .topbar{height:56px}
+  .brand{font-size:19px}
+  .topbar-right{gap:8px}
+  .today-chip{font-size:11px}
+  .welcome-row{padding:16px 1px 14px}
+  .welcome-row h1{font-size:23px;line-height:1.14;letter-spacing:-.45px}
+  .welcome-note,.welcome-art{display:none}
+  .welcome-row .eyebrow{font-size:9px;margin-bottom:5px;letter-spacing:.1em}
+  .metric-grid{grid-template-columns:1fr 1fr;gap:8px}
+  .metric-card{min-height:98px;padding:13px 12px;border-radius:15px}
+  .balance-metric{grid-column:1/-1;min-height:112px;padding:15px}
+  .metric-label{font-size:9px;letter-spacing:.045em;gap:6px}
+  .metric-icon{width:21px;height:21px;font-size:11px}
+  .metric-card>strong{font-size:21px;margin-top:10px;letter-spacing:-.35px}
+  .balance-metric>strong{font-size:29px}
+  .metric-foot{font-size:10px;margin-top:5px}
+  .dashboard-grid{grid-template-columns:minmax(0,1fr);gap:10px;margin-top:11px}
+  .panel{padding:16px 14px;border-radius:17px}
+  .panel-heading h2{font-size:17px;letter-spacing:-.2px}
+  .panel-subtitle{font-size:10px}
+  .spending-panel .panel-heading{display:block}
+  .spending-panel .chart-controls{width:max-content;margin-top:12px}
+  .range-button{min-height:36px;padding:0 11px;font-size:10px}
+  .chart-content{min-height:176px;gap:13px;padding:12px 0 0}
+  .chart-wrap{width:142px;height:142px;flex:0 0 142px}
+  .pie{width:138px;height:138px}
+  .pie-hole{inset:35px}
+  .pie-caption{font-size:8px}
+  .pie-hole strong{font-size:13px}
+  .pie-hole small{font-size:9px}
+  .legend{max-height:176px;gap:0}
+  .legend-row{grid-template-columns:9px minmax(55px,1fr) auto;gap:6px;padding:8px 0;font-size:10px}
+  .legend-value{font-size:10px}
+  .legend-value small{font-size:8px}
+  .chart-empty-state{min-height:118px;padding:11px 3px;gap:12px}
+  .empty-chart-icon{width:47px;height:47px;font-size:24px}
+  .chart-empty-state b{font-size:13px}
+  .chart-empty-state small{font-size:10px}
+  .accounts-grid{grid-template-columns:1fr 1fr;gap:8px;margin-top:16px}
+  .account-card{padding:12px 10px;border-radius:14px}
+  .account-emoji{width:27px;height:27px}
+  .account-name{font-size:11px}
+  .account-card strong{font-size:17px;margin-top:13px}
+  .account-card small{font-size:9px}
+  .balance-track{margin-top:11px}
+  .account-note{font-size:9px;margin-top:13px}
+  .activity-panel{grid-column:auto}
+  .activity-heading{align-items:center;gap:8px}
+  .quiet-button{min-height:38px;padding:0 9px;font-size:9px}
+  .payment-row{grid-template-columns:minmax(0,1fr) auto 40px;gap:7px;min-height:58px;padding:9px 0}
+  .payment-info{grid-column:1;grid-row:1/3;grid-template-columns:38px minmax(0,1fr);column-gap:8px}
+  .payment-emoji{width:36px;height:36px}
+  .payment-category{font-size:12px}
+  .payment-note{font-size:10px;max-width:none}
+  .payment-date{grid-column:2;grid-row:1;font-size:9px}
+  .payment-right{grid-column:2;grid-row:2}
+  .payment-amount{font-size:12px}
+  .edit-payment{grid-column:3;grid-row:1/3;width:40px;height:44px;font-size:16px}
+  .empty-recent{min-height:66px;font-size:11px}
+  .fab{width:calc(100% - 28px);max-width:480px;height:54px;bottom:max(9px,env(safe-area-inset-bottom));border-radius:15px;font-size:14px;justify-content:center}
+  .dialog{width:100%;max-height:92dvh;border-radius:22px 22px 0 0}
+  .dialog form{padding:12px 18px max(20px,env(safe-area-inset-bottom))}
+  .dialog-grab{margin-bottom:17px}
+  .dialog-heading{margin-bottom:17px}
+  .dialog h2{font-size:20px;font-weight:600}
+  .field-label{font-size:12px}
+  .amount-field{height:58px}
+  .text-input{height:48px;font-size:14px}
+  .category-options{grid-template-columns:repeat(3,1fr);gap:7px}
+  .category-chip{min-height:54px;font-size:10px}
+  .submit-button{height:52px;font-size:14px}
+  .close-button{width:40px;height:40px}
+  .account-help{font-size:11px}
+  .account-edit-fields .field-label{margin-top:9px}
+  .compact-amount{height:48px}
+  .toast{bottom:calc(76px + env(safe-area-inset-bottom));font-size:12px}
+}
+@media(max-width:370px){
+  body{padding-left:12px;padding-right:12px}
+  .metric-card{padding-left:10px;padding-right:10px}
+  .metric-label{font-size:8px}
+  .chart-content{gap:8px}
+  .chart-wrap{width:124px;height:124px;flex-basis:124px}
+  .pie{width:120px;height:120px}
+  .pie-hole{inset:31px}
+  .legend-row{grid-template-columns:8px minmax(42px,1fr) auto;gap:5px;font-size:9px}
+  .legend-value{font-size:9px}
+  .account-card{padding-left:8px;padding-right:8px}
+  .payment-note{max-width:150px}
+}
+@media(max-width:600px){.fab{font-weight:500}.dialog h2{font-weight:500}}
+@media(max-width:600px){.mobile-break{display:block}}
+
+/* Savings and monthly SIP trackers */
+.wealth-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px;margin-top:13px}
+.wealth-panel{min-width:0;border:1px solid var(--line);border-radius:19px;background:#fffefa;padding:17px 19px 15px}
+.savings-panel{background:#eef3e9;border-color:#e4ebde}
+.investment-panel{background:#f0eef7;border-color:#e8e5f0}
+.wealth-head{display:flex;align-items:center;justify-content:space-between}
+.wealth-head .eyebrow{margin-bottom:4px;font-weight:400}
+.wealth-head h2{margin:0;font-size:16px;font-weight:400}
+.wealth-badge{width:28px;height:28px;border-radius:10px;display:grid;place-items:center;background:#ffffffaa;color:#638368;font-size:17px;font-weight:400}
+.investment-badge{color:#7e77a0}
+.wealth-total{display:block;margin-top:14px;font-size:27px;line-height:1.1;font-weight:700;letter-spacing:-.3px;color:#39443a;overflow-wrap:anywhere}
+.wealth-caption{margin:4px 0 0;font-size:10px;color:#7f887c}
+.wealth-detail{min-height:28px;margin:8px 0 11px;font-size:9px;line-height:1.45;color:#8b9288}
+.wealth-actions{display:flex;align-items:center;gap:8px}
+.wealth-primary,.wealth-secondary{min-height:40px;border-radius:10px;padding:0 12px;font-size:10px;font-weight:400;white-space:nowrap}
+.wealth-primary{border:1px solid var(--green);background:var(--green);color:#fff}
+.wealth-secondary{border:1px solid #dfe5db;background:#fffefa;color:#687966}
+.investment-panel .wealth-secondary{border-color:#e2deec;color:#777192}
+.wealth-primary:disabled{opacity:.65;cursor:default}
+
+/* Lato is used consistently; only financial values use a heavier weight. */
+:root{--font:'Lato',sans-serif;--display:'Lato',sans-serif}
+.welcome-row h1,.panel-heading h2,.dialog h2{font-family:var(--font);font-weight:400}
+.metric-card>strong,.account-card strong,.payment-amount,.legend-value,.wealth-total,.pie-hole strong{font-weight:700}
+@media(max-width:600px){
+  .wealth-grid{grid-template-columns:1fr 1fr;gap:7px;margin-top:9px}
+  .wealth-panel{padding:13px 11px;border-radius:15px}
+  .wealth-head h2{font-size:15px}
+  .wealth-badge{width:25px;height:25px;border-radius:8px;font-size:15px}
+  .wealth-total{margin-top:12px;font-size:21px;letter-spacing:-.2px}
+  .wealth-caption{font-size:9px}
+  .wealth-detail{min-height:38px;margin:7px 0 8px;font-size:9px;line-height:1.35;overflow-wrap:anywhere}
+  .wealth-actions{display:grid;grid-template-columns:1fr;gap:6px}
+  .wealth-primary,.wealth-secondary{width:100%;min-height:40px;padding:0 5px;font-size:10px}
+}
+@media(max-width:370px){
+  .wealth-panel{padding-left:9px;padding-right:9px}
+  .wealth-total{font-size:19px}
+  .wealth-primary,.wealth-secondary{font-size:9px}
+}
+
+/* Six-month spending history */
+.monthly-panel{grid-column:1/-1}
+.monthly-heading{margin-bottom:17px}
+.monthly-chart{width:100%}
+.month-bars{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px;align-items:end;min-height:173px;padding:0 3px}
+.month-column{display:grid;grid-template-rows:20px 1fr 19px;gap:5px;min-width:0;text-align:center}
+.month-value{overflow:hidden;text-overflow:clip;white-space:nowrap;color:#8c9288;font-size:9px;line-height:20px;font-weight:400}
+.month-bar-stage{height:126px;display:flex;align-items:flex-end;justify-content:center;border-bottom:1px solid #e9e7df;background:linear-gradient(to bottom,transparent 24.5%,#f2f0e9 25%,transparent 25.5%,transparent 49.5%,#f2f0e9 50%,transparent 50.5%,transparent 74.5%,#f2f0e9 75%,transparent 75.5%)}
+.month-bar{display:block;width:min(38px,62%);min-height:2px;border-radius:7px 7px 2px 2px;background:#c3d2bd;transition:height .25s ease}
+.month-column.current .month-bar{background:#628267}
+.month-column.current .month-value{color:#4e7355}
+.month-label{padding-top:2px;color:#92978d;font-size:9px;font-weight:400}
+.month-column.current .month-label{color:#52745a;font-weight:700}
+@media(max-width:600px){
+  .monthly-panel{padding:15px 12px}
+  .monthly-heading{margin-bottom:12px}
+  .month-bars{gap:5px;min-height:149px;padding:0}
+  .month-column{grid-template-rows:18px 1fr 18px;gap:4px}
+  .month-value{font-size:8px;line-height:18px}
+  .month-bar-stage{height:105px}
+  .month-bar{width:min(28px,66%);border-radius:6px 6px 2px 2px}
+  .month-label{font-size:9px}
+}
+
+/* Style the compact financial summaries. */
+.metric-grid{grid-template-columns:repeat(2,minmax(0,1fr));align-items:start}
+.metric-card{min-height:124px}
+.alltime-metric{grid-column:1/-1;min-height:0;padding-bottom:15px}
+.metric-art{position:absolute;right:17px;bottom:15px;width:34px;height:34px;border-radius:11px;background:#ffffffa8;display:grid;place-items:center;font-size:17px}
+.monthly-chart-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:14px;padding-top:10px;border-top:1px solid #e4e1eb;color:#777385;font-size:10px}
+.monthly-chart-head strong{color:#555166;font-size:11px;font-weight:700;white-space:nowrap}
+.month-bars{min-height:126px;gap:12px;padding:7px 3px 0}
+.month-column{border:0;background:transparent;padding:0;cursor:pointer;font:inherit;color:inherit}
+.month-column:focus-visible{outline:2px solid #628267;outline-offset:3px;border-radius:7px}
+.month-column.selected .month-label{color:#426e4d;font-weight:700}
+.month-column.selected .month-bar{background:#557c5d}
+.month-bar-stage{height:84px}
+.month-column.current .month-bar{background:#829c7d}
+.month-column.current.selected .month-bar{background:#476e50}
+.month-column.current .month-label{font-weight:400}
+.month-column.current.selected .month-label{font-weight:700}
+.metric-label{font-size:10px}
+.metric-card>strong{font-size:24px}
+@media(max-width:600px){
+  .welcome-art{display:block;width:70px;height:54px;margin-right:0}
+  .welcome-row h1{max-width:260px}
+  .metric-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .balance-metric{grid-column:auto;min-height:106px;padding:13px 11px}
+  .month-metric{min-height:106px;padding:13px 11px}
+  .alltime-metric{grid-column:1/-1;min-height:0;padding:14px 12px}
+  .metric-label{font-size:8px;letter-spacing:.02em}
+  .metric-card>strong{font-size:clamp(16px,4.5vw,21px);white-space:nowrap}
+  .alltime-metric>strong{font-size:24px}
+  .metric-art{right:10px;bottom:10px;width:27px;height:27px;border-radius:9px;font-size:14px}
+  .monthly-chart-head{margin-top:12px;padding-top:9px;font-size:10px}
+  .monthly-chart-head strong{font-size:10px}
+  .month-bars{min-height:122px;gap:4px;padding:7px 0 0}
+  .month-column{grid-template-rows:17px 1fr 18px;gap:3px}
+  .month-value{font-size:8px;line-height:17px}
+  .month-bar-stage{height:82px}
+  .month-label{font-size:9px}
+}
+@media(max-width:370px){
+  .welcome-art{width:58px}
+  .welcome-row h1{font-size:21px;max-width:240px}
+  .metric-label{font-size:7px}
+  .metric-card>strong{font-size:16px}
+  .alltime-metric>strong{font-size:22px}
+  .month-bars{gap:2px}
+  .month-value{font-size:7px}
+  .month-label{font-size:8px}
+}
+
+/* The all-time tab contains the month-by-month spending history. */
+.metric-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+.alltime-metric{grid-column:auto;min-height:124px;padding:17px 19px}
+.metric-art{display:grid}
+.monthly-chart-head{margin:0 0 12px;padding:0;border:0;color:#596057;font-size:12px}
+.monthly-chart-head strong{font-size:11px}
+.monthly-chart{width:100%;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:thin;scrollbar-color:#d6ddd1 transparent}
+.month-bars{grid-template-columns:repeat(6,minmax(46px,1fr));min-height:148px;gap:8px;padding:7px 3px 0}
+.month-column{width:auto;min-width:0}
+.month-bar-stage{height:99px}
+.trend-view[hidden]{display:none!important}
+.trend-empty{min-height:145px;display:grid;place-items:center;color:#899087;font-size:13px}
+.trend-empty[hidden]{display:none!important}
+.spending-panel.is-trend .chart-empty-state,.spending-panel.is-trend .chart-content{display:none!important}
+.month-column.current .month-label{font-weight:400}
+.month-column.selected .month-label{font-weight:700}
+@media(max-width:600px){
+  .metric-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .balance-metric,.month-metric{grid-column:auto;min-height:106px;padding:13px 11px}
+  .alltime-metric{grid-column:1/-1;min-height:124px;padding:14px 12px}
+  .month-bars{grid-template-columns:repeat(6,minmax(46px,1fr));min-height:136px;gap:4px;padding:7px 0 0}
+  .month-bar-stage{height:88px}
+  .trend-empty{min-height:115px;font-size:12px}
+}
+.metric-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media(max-width:600px){.metric-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.balance-metric,.month-metric{grid-column:auto}}
+.welcome-art{width:140px;height:92px;margin-right:24px;display:grid;place-items:center;background:transparent;box-shadow:none}
+@media(max-width:600px){.welcome-art{display:grid;width:76px;height:54px;margin-right:0}}
+@media(max-width:370px){.welcome-art{width:58px;height:48px}}
+.welcome-art{height:auto}
+@media(max-width:600px){.welcome-art{height:auto}}
+.finance-reviewer{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:contain;object-position:center bottom;background:transparent;box-shadow:none;filter:none;pointer-events:none}
+
+/* Quiet interaction feedback; the hero illustration stays still. */
+button,a{transition:color 140ms ease,background-color 140ms ease,border-color 140ms ease,box-shadow 140ms ease,transform 140ms ease}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid #789678;outline-offset:2px}
+button:active{transform:scale(.985)}
+input,select{transition:border-color 140ms ease,box-shadow 140ms ease}
+.text-input:focus,.amount-field:focus-within{box-shadow:0 0 0 3px #78967818}
+.metric-card,.wealth-panel,.panel,.account-card{transition:border-color 160ms ease,box-shadow 160ms ease}
+.payment-row{transition:background-color 140ms ease}
+.month-column{transition:background-color 140ms ease}
+.month-bar{transition:height 220ms ease,background-color 160ms ease}
+.chart-content,.chart-empty-state,.trend-view{transition:opacity 160ms ease}
+.dialog[open]{animation:dialog-enter 180ms ease-out both}
+.dialog[open]::backdrop{animation:backdrop-enter 180ms ease-out both}
+@keyframes dialog-enter{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
+@keyframes backdrop-enter{from{background:#26302400}to{background:#26302466}}
+@media(hover:hover){.account-card:hover,.wealth-panel:hover{border-color:#d8e2d4;box-shadow:0 4px 14px #394a3310}.payment-row:hover{background:#faf9f5}.month-column:hover .month-bar{filter:brightness(.94)}.quiet-button:hover,.wealth-secondary:hover{background:#edf2ea}.wealth-primary:hover,.top-add:hover,.fab:hover,.submit-button:hover{background:#466b4f}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
