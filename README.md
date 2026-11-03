@@ -1,6 +1,6 @@
 # Penny
 
-A responsive personal finance dashboard using Lato. See the combined balance across two accounts, savings, SIP contributions, monthly and all-time spending, category spending in a pie chart, and recent payments. The **Spending breakdown → All time** view shows month-by-month spending totals as a bar chart.
+A responsive personal finance dashboard using Lato. See the combined balance across two accounts, savings, SIP contributions, monthly and all-time spending, category spending in a pie chart, and complete payment history. The **Spending breakdown → All time** view shows month-by-month spending totals as a bar chart.
 
 ## Run locally
 
