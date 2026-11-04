@@ -9,12 +9,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css?v=20261104-emoji" />
+    <link rel="stylesheet" href="styles.css?v=20261104-accounts" />
     <script src="https://www.gstatic.com/firebasejs/13.2.0/firebase-app-compat.js" defer></script>
     <script src="https://www.gstatic.com/firebasejs/13.2.0/firebase-auth-compat.js" defer></script>
     <script src="https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore-compat.js" defer></script>
     <script src="firebase-config.js?v=1" defer></script>
-    <script src="app.js?v=20261104-emoji" defer></script>
+    <script src="app.js?v=20261104-accounts" defer></script>
   </head>
   <body>
     <section class="auth-screen" id="auth-screen" hidden>
@@ -127,17 +127,8 @@
     <dialog id="account-dialog" class="dialog small-dialog">
       <form id="account-form" method="dialog"><div class="dialog-grab"></div><div class="dialog-heading"><div><h2>Edit account balances</h2></div><button class="close-button" type="button" data-close="account-dialog" aria-label="Close">×</button></div>
         <p class="account-help">Set your current balances. Payments, savings deposits, and SIP contributions come off the selected account.</p>
-        <div class="account-edit-fields">
-          <label class="field-label" for="account-name-1">First account</label><input class="text-input" id="account-name-1" maxlength="24" required />
-          <label class="field-label" for="account-emoji-1">Emoji icon</label><input class="text-input emoji-input" id="account-emoji-1" maxlength="8" /><div class="emoji-options" id="account-emoji-options-1" aria-label="First account emoji icons"></div>
-          <label class="field-label" for="account-balance-1">Current balance</label><div class="amount-field compact-amount"><span>₹</span><input id="account-balance-1" type="number" inputmode="decimal" min="0" step="0.01" required /></div>
-          <label class="field-label" for="account-name-2">Second account</label><input class="text-input" id="account-name-2" maxlength="24" required />
-          <label class="field-label" for="account-emoji-2">Emoji icon</label><input class="text-input emoji-input" id="account-emoji-2" maxlength="8" /><div class="emoji-options" id="account-emoji-options-2" aria-label="Second account emoji icons"></div>
-          <label class="field-label" for="account-balance-2">Current balance</label><div class="amount-field compact-amount"><span>₹</span><input id="account-balance-2" type="number" inputmode="decimal" min="0" step="0.01" required /></div>
-          <label class="field-label" for="account-name-3">Cash account</label><input class="text-input" id="account-name-3" maxlength="24" required />
-          <label class="field-label" for="account-emoji-3">Emoji icon</label><input class="text-input emoji-input" id="account-emoji-3" maxlength="8" /><div class="emoji-options" id="account-emoji-options-3" aria-label="Cash account emoji icons"></div>
-          <label class="field-label" for="account-balance-3">Cash on hand</label><div class="amount-field compact-amount"><span>₹</span><input id="account-balance-3" type="number" inputmode="decimal" min="0" step="0.01" required /></div>
-        </div>
+        <div class="account-edit-fields" id="account-edit-fields"></div>
+        <button class="quiet-button add-account-row" id="add-account-row" type="button">＋ Add another account</button>
         <button class="submit-button" type="submit">Save balances <span>✓</span></button>
       </form>
     </dialog>

@@ -134,6 +134,9 @@ input::placeholder{color:#c3c4bb}
 .account-help{font-size:10px;line-height:1.5;color:#8d9288;margin:-9px 0 16px}
 .account-edit-fields{display:flex;flex-direction:column}
 .account-edit-fields .field-label{margin-top:10px}
+.account-edit-row{padding:0 0 16px;margin:0 0 14px;border-bottom:1px solid #eeeae1}
+.account-edit-row h3{margin:0 0 7px;color:#657264;font-size:13px;font-weight:700}
+.add-account-row{width:100%;padding:11px;margin:1px 0 14px;border:1px dashed #cbd5c8;background:#f8faf6;font-size:11px}
 .emoji-input{max-width:100px;font-size:17px;text-align:center}
 .emoji-options{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:5px;max-height:108px;overflow:auto;margin:7px 0 10px;padding:2px}
 .emoji-choice{min-width:0;aspect-ratio:1;border:1px solid transparent;border-radius:9px;background:#f8f6f0;font-size:18px;cursor:pointer}
