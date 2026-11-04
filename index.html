@@ -9,12 +9,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css?v=20261104-cash-on-hand" />
+    <link rel="stylesheet" href="styles.css?v=20261104-profile" />
     <script src="https://www.gstatic.com/firebasejs/13.2.0/firebase-app-compat.js" defer></script>
     <script src="https://www.gstatic.com/firebasejs/13.2.0/firebase-auth-compat.js" defer></script>
     <script src="https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore-compat.js" defer></script>
     <script src="firebase-config.js?v=1" defer></script>
-    <script src="app.js?v=20261104-cash-on-hand" defer></script>
+    <script src="app.js?v=20261104-profile" defer></script>
   </head>
   <body>
     <section class="auth-screen" id="auth-screen" hidden>
@@ -29,14 +29,14 @@
     <main class="app-shell">
       <header class="topbar" id="top">
         <a class="brand" href="#top" aria-label="Penny home">penny</a>
-        <div class="topbar-right"><span class="today-chip" id="today-label"></span><button class="sign-out" id="sign-out" type="button">Sign out</button><button class="top-add" id="add-payment-top" type="button"><span>＋</span> Add payment</button></div>
+        <div class="topbar-right"><span class="today-chip" id="today-label"></span><button class="profile-button" id="open-profile" type="button" aria-label="Open profile"><span class="profile-avatar" id="header-avatar">P</span><span class="profile-button-copy"><b id="header-profile-name">Profile</b><small id="header-profile-email"></small></span></button><button class="top-add" id="add-payment-top" type="button"><span>＋</span> Add payment</button></div>
       </header>
 
       <section class="welcome-row"><div><h1>Your finances at a glance.</h1></div><div class="welcome-art"><img class="finance-reviewer" src="assets/finance-reviewer-transparent.png?v=20261102-alpha" alt="Illustration of a woman with glasses reviewing her finances at a table" /></div></section>
 
       <section class="metric-grid" aria-label="Financial summary">
         <article class="metric-card balance-metric"><div class="metric-label">AVAILABLE BALANCE</div><strong id="combined-balance">₹0</strong><span class="metric-art" aria-hidden="true">💳</span></article>
-        <article class="metric-card month-metric"><div class="metric-label">SPENT THIS MONTH</div><strong id="monthly-total">₹0</strong><span class="metric-art" aria-hidden="true">🧾</span></article>
+        <article class="metric-card month-metric"><div class="metric-label">SPENT THIS MONTH</div><strong id="monthly-total">₹0</strong><span class="metric-foot" id="budget-detail"></span><span class="metric-art" aria-hidden="true">🧾</span></article>
       </section>
 
       <section class="wealth-grid" aria-label="Savings and investments">
@@ -95,6 +95,19 @@
         <label class="field-label" for="cash-amount">Current cash</label><div class="amount-field"><span>₹</span><input id="cash-amount" type="number" inputmode="decimal" min="0" step="0.01" required /></div>
         <button class="submit-button" type="submit">Save cash balance</button>
       </form>
+    </dialog>
+    <dialog id="profile-dialog" class="dialog small-dialog">
+      <div class="dialog-grab"></div><div class="dialog-heading"><div><h2>Profile</h2></div><button class="close-button" type="button" data-close="profile-dialog" aria-label="Close">×</button></div>
+      <div class="profile-identity"><img id="profile-photo" alt="" hidden /><span class="profile-avatar profile-avatar-large" id="profile-initials">P</span><div><strong id="profile-google-name">Google account</strong><small id="profile-google-email"></small></div></div>
+      <form id="profile-form" method="dialog">
+        <label class="field-label" for="profile-name">Name shown in Penny</label><input class="text-input" id="profile-name" maxlength="48" placeholder="Your name" />
+        <label class="field-label" for="profile-default-account">Default account for new payments</label><select class="text-input account-select" id="profile-default-account" required></select>
+        <label class="field-label" for="profile-monthly-budget">Monthly spending target <span>(optional)</span></label><div class="amount-field"><span>₹</span><input id="profile-monthly-budget" type="number" inputmode="decimal" min="0" step="0.01" placeholder="0" /></div>
+        <label class="field-label" for="profile-savings-goal">Savings goal <span>(optional)</span></label><div class="amount-field"><span>₹</span><input id="profile-savings-goal" type="number" inputmode="decimal" min="0" step="0.01" placeholder="0" /></div>
+        <p class="account-help profile-currency-note">Penny currently records amounts in INR. You can edit the display currency later; changing it will need a conversion choice.</p>
+        <button class="submit-button" type="submit">Save profile</button>
+      </form>
+      <button class="profile-signout" id="sign-out" type="button">Sign out</button>
     </dialog>
 
     <dialog id="category-dialog" class="dialog small-dialog">
