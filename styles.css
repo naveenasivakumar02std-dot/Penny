@@ -162,11 +162,8 @@ body.auth-required .app-shell,body.auth-required .fab{display:none}
 .google-mark{display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:#fff;color:#4285f4;font:700 15px Arial,sans-serif}
 .auth-message{min-height:18px;margin:12px 0 0;color:#a14d43;font-size:11px;line-height:1.4;overflow-wrap:anywhere}
 .sign-out{border:0;background:transparent;color:#7f897e;font:600 10px var(--font);cursor:pointer}
-.profile-button{display:flex;align-items:center;gap:7px;min-width:0;padding:4px 8px;border:1px solid #e7e9e2;border-radius:14px;background:#fffefa;color:#364139;text-align:left;cursor:pointer}
-.profile-avatar{display:grid;place-items:center;width:30px;height:30px;flex:0 0 auto;border-radius:50%;background:#e8f0e6;color:#52745a;font-size:12px;font-weight:700}
-.profile-button-copy{display:flex;flex-direction:column;min-width:0;max-width:115px;line-height:1.25}
-.profile-button-copy b{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:10px}
-.profile-button-copy small{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#888f84;font-size:8px}
+.profile-button{display:grid;place-items:center;width:36px;height:36px;flex:0 0 auto;padding:0;border:0;border-radius:50%;background:transparent;cursor:pointer}
+.profile-avatar{display:grid;place-items:center;width:34px;height:34px;flex:0 0 auto;border-radius:50%;background:#e8f0e6;color:#52745a;font-size:14px;font-weight:700}
 .profile-identity{display:flex;align-items:center;gap:12px;padding:0 28px 16px}
 .profile-identity>div{display:flex;flex-direction:column;gap:4px;min-width:0}
 .profile-identity strong{font-size:13px}
