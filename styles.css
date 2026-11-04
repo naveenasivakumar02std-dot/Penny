@@ -84,7 +84,8 @@ h1,h2,p{margin-top:0}
 .payment-note{margin-top:3px;color:#989d93;font-size:9px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .payment-note span{color:#aaada5}
 .payment-date{color:#8d9389;font-size:9px}
-.payment-date,.payment-right{justify-self:start;text-align:left}
+.payment-date{justify-self:start;text-align:left}
+.payment-right{justify-self:end;text-align:right}
 .payment-amount{font-size:11px;font-weight:700;color:#495347;white-space:nowrap}
 .edit-payment{border:0;background:transparent;color:#afb2a8;font-size:15px;padding:6px}
 .recent-card.is-empty{padding:0 0 5px}
@@ -245,15 +246,15 @@ body.auth-required .app-shell,body.auth-required .fab{display:none}
   .activity-panel{grid-column:auto}
   .activity-heading{align-items:center;gap:8px}
   .quiet-button{min-height:38px;padding:0 9px;font-size:9px}
-  .payment-row{grid-template-columns:minmax(0,1fr) 40px;grid-template-rows:auto auto auto;column-gap:8px;row-gap:2px;min-height:58px;padding:9px 0}
+  .payment-row{grid-template-columns:minmax(0,1fr) 40px;grid-template-rows:auto auto;column-gap:8px;row-gap:2px;min-height:58px;padding:9px 0}
   .payment-info{grid-column:1;grid-row:1;grid-template-columns:38px minmax(0,1fr);column-gap:8px}
   .payment-emoji{width:36px;height:36px}
   .payment-category{font-size:12px}
   .payment-note{font-size:10px;max-width:none}
-  .payment-date{grid-column:1;grid-row:2;width:calc(100% - 46px);margin-left:46px;font-size:9px;text-align:left}
-  .payment-right{grid-column:1;grid-row:3;width:calc(100% - 46px);margin-left:46px;text-align:left}
+  .payment-date{grid-column:1;grid-row:2;width:auto;margin-left:46px;font-size:9px}
+  .payment-right{grid-column:1;grid-row:2;width:auto;margin:0 8px 0 0;text-align:right}
   .payment-amount{font-size:12px}
-  .edit-payment{grid-column:2;grid-row:1/4;align-self:start;justify-self:end;width:40px;height:44px;font-size:16px}
+  .edit-payment{grid-column:2;grid-row:1/3;align-self:start;justify-self:end;width:40px;height:44px;font-size:16px}
   .empty-recent{min-height:66px;font-size:11px}
   .fab{width:calc(100% - 28px);max-width:480px;height:54px;bottom:max(9px,env(safe-area-inset-bottom));border-radius:15px;font-size:14px;justify-content:center}
   .dialog{width:100%;max-height:92dvh;border-radius:22px 22px 0 0}
