@@ -1,6 +1,6 @@
 # Penny
 
-A responsive personal finance dashboard using Lato. See the combined balance across two accounts, savings, SIP contributions, monthly and all-time spending, category spending in a pie chart, and complete payment history. The **Spending breakdown → All time** view shows month-by-month spending totals as a bar chart.
+A responsive personal finance dashboard using Lato. See balances across two bank accounts and cash on hand, savings, SIP contributions, monthly and all-time spending, category spending in a pie chart, and complete payment history. The **Spending breakdown → All time** view shows month-by-month spending totals as a bar chart.
 
 ## Firebase setup
 
@@ -32,6 +32,6 @@ The included `vercel.json` enables clean URLs. Add the Vercel hostname to Fireba
 
 ## Data
 
-Payments, categories, account balances, savings, and investments sync to the signed-in user's Firestore document. The browser also keeps a local cache, but the cloud copy is the source loaded after sign-in. Existing browser data is offered for import the first time an account is used. The app currently displays amounts in Indian rupees. Account balances start at zero; set your current balances using **Edit balances**. New payments, savings deposits, and recorded SIP contributions reduce the selected account balance. Older payments remain in your spending totals but are not assigned to an account automatically.
+Payments, categories, account balances, savings, and investments sync to the signed-in user's Firestore document. The browser also keeps a local cache, but the cloud copy is the source loaded after sign-in. Existing browser data is offered for import the first time an account is used. The app currently displays amounts in Indian rupees. Account balances start at zero; set bank balances using **Edit balances** and record physical cash using **Set cash on hand**. Cash is a separate account and can be selected when recording a payment. New payments, savings deposits, and recorded SIP contributions reduce the selected account balance. Older payments remain in your spending totals but are not assigned to an account automatically.
 
-Set your existing savings with **Set balance**, or log additions with **Add savings**. Configure the monthly SIP amount and funding account in **SIP settings**. After the bank debit has happened, select **Record SIP** once that month; Penny prevents a second entry for the same month. SIP totals represent contributions only, not live investment value or market returns. The app does not connect to your bank or detect the debit automatically.
+Set your existing savings with **Set balance**, or log additions with **Add savings**. Edit the total contributed, monthly SIP amount, and funding account in **Edit investments**. After the bank debit has happened, select **Record SIP** once that month; Penny prevents a second entry for the same month. SIP totals represent contributions only, not live investment value or market returns. The app does not connect to your bank or detect the debit automatically.
