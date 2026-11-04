@@ -285,6 +285,8 @@ body.auth-required .app-shell,body.auth-required .fab{display:none}
 .wealth-primary{border:1px solid var(--green);background:var(--green);color:#fff}
 .wealth-secondary{border:1px solid #dfe5db;background:#fffefa;color:#687966}
 .investment-panel .wealth-secondary{border-color:#e2deec;color:#777192}
+.account-actions{display:flex;align-items:center;gap:6px}
+@media(max-width:600px){.account-actions{gap:3px}.account-actions .quiet-button{padding:7px 6px;font-size:8px}}
 .wealth-primary:disabled{opacity:.65;cursor:default}
 
 /* Lato is used consistently; only financial values use a heavier weight. */

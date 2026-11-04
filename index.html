@@ -9,12 +9,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css?v=20261102-static-art" />
+    <link rel="stylesheet" href="styles.css?v=20261104-money-tools" />
     <script src="https://www.gstatic.com/firebasejs/13.2.0/firebase-app-compat.js" defer></script>
     <script src="https://www.gstatic.com/firebasejs/13.2.0/firebase-auth-compat.js" defer></script>
     <script src="https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore-compat.js" defer></script>
     <script src="firebase-config.js?v=1" defer></script>
-    <script src="app.js?v=20261104-firebase" defer></script>
+    <script src="app.js?v=20261104-money-tools" defer></script>
   </head>
   <body>
     <section class="auth-screen" id="auth-screen" hidden>
@@ -50,7 +50,7 @@
           <div class="wealth-head"><div><h2>Investments</h2></div><span class="wealth-badge investment-badge" aria-hidden="true">📈</span></div>
           <strong class="wealth-total" id="investment-total">₹0</strong><p class="wealth-caption">Total contributed</p>
           <p class="wealth-detail" id="sip-detail"></p>
-          <div class="wealth-actions"><button class="wealth-primary" id="record-sip" type="button">Record this month’s SIP</button><button class="wealth-secondary" id="manage-sip" type="button">SIP settings</button></div>
+          <div class="wealth-actions"><button class="wealth-primary" id="record-sip" type="button">Record this month’s SIP</button><button class="wealth-secondary" id="manage-sip" type="button">Edit investments</button></div>
         </article>
       </section>
 
@@ -63,7 +63,7 @@
         </article>
 
         <article class="panel accounts-panel">
-          <div class="panel-heading"><div><h2>Accounts</h2></div><button class="quiet-button" id="manage-accounts" type="button">Edit balances</button></div>
+          <div class="panel-heading"><div><h2>Accounts</h2></div><div class="account-actions"><button class="quiet-button" id="add-cash" type="button">＋ Add cash</button><button class="quiet-button" id="manage-accounts" type="button">Edit balances</button></div></div>
           <section class="accounts-grid" id="accounts-grid" aria-label="Account balances"></section>
         </article>
 
@@ -87,6 +87,14 @@
         <div class="category-options" id="category-options"></div>
         <label class="field-label note-label" for="note">A note <span>(optional)</span></label><input class="text-input" id="note" name="note" maxlength="60" placeholder="Coffee with a friend…" />
         <button class="submit-button" type="submit">Save payment <span>✓</span></button>
+      </form>
+    </dialog>
+    <dialog id="cash-dialog" class="dialog small-dialog">
+      <form id="cash-form" method="dialog"><div class="dialog-grab"></div><div class="dialog-heading"><div><h2>Add cash to an account</h2></div><button class="close-button" type="button" data-close="cash-dialog" aria-label="Close">×</button></div>
+        <p class="account-help">Record money you’ve added to an account. This increases its available balance.</p>
+        <label class="field-label" for="cash-amount">Amount added</label><div class="amount-field"><span>₹</span><input id="cash-amount" type="number" inputmode="decimal" min="0.01" step="0.01" required /></div>
+        <label class="field-label" for="cash-account">Add it to</label><select class="text-input account-select" id="cash-account" required></select>
+        <button class="submit-button" type="submit">Add cash</button>
       </form>
     </dialog>
 
@@ -131,8 +139,9 @@
       </form>
     </dialog>
     <dialog id="sip-dialog" class="dialog small-dialog">
-      <form id="sip-form" method="dialog"><div class="dialog-grab"></div><div class="dialog-heading"><div><h2>Monthly SIP</h2></div><button class="close-button" type="button" data-close="sip-dialog" aria-label="Close">×</button></div>
-        <p class="account-help">Penny doesn’t connect to your bank or read market value. Set your amount and source account, then record the SIP after it’s deducted.</p>
+      <form id="sip-form" method="dialog"><div class="dialog-grab"></div><div class="dialog-heading"><div><h2>Edit investments</h2></div><button class="close-button" type="button" data-close="sip-dialog" aria-label="Close">×</button></div>
+        <p class="account-help">Update your total contributions and monthly SIP. Penny doesn’t connect to your bank or read market value.</p>
+        <label class="field-label" for="investment-total-edit">Total contributed so far</label><div class="amount-field"><span>₹</span><input id="investment-total-edit" type="number" inputmode="decimal" min="0" step="0.01" required /></div>
         <label class="field-label" for="sip-amount">Monthly SIP amount</label><div class="amount-field"><span>₹</span><input id="sip-amount" type="number" inputmode="decimal" min="0" step="0.01" placeholder="0" required /></div>
         <label class="field-label" for="sip-account">Deducted from</label><select class="text-input account-select" id="sip-account" required></select>
         <button class="submit-button" type="submit">Save SIP settings</button>
