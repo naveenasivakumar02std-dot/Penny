@@ -50,7 +50,7 @@ h1,h2,p{margin-top:0}
 .legend-row:last-child{border-bottom:0}
 .legend-dot{width:8px;height:8px;border-radius:50%}
 .legend-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#70776d}
-.legend-value{font-weight:700;color:#50584f;white-space:nowrap}
+.legend-value{font-weight:700;color:#50584f;white-space:nowrap;text-align:left}
 .legend-value small{margin-left:4px;color:#a0a397;font-size:8px;font-weight:500}
 .chart-empty-state{display:flex;align-items:center;gap:13px;min-height:180px;padding:15px 11px}
 .chart-empty-state b{display:block;font:800 13px var(--display);color:#596456}
@@ -84,7 +84,7 @@ h1,h2,p{margin-top:0}
 .payment-note{margin-top:3px;color:#989d93;font-size:9px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .payment-note span{color:#aaada5}
 .payment-date{color:#8d9389;font-size:9px}
-.payment-right{text-align:right}
+.payment-date,.payment-right{justify-self:start;text-align:left}
 .payment-amount{font-size:11px;font-weight:700;color:#495347;white-space:nowrap}
 .edit-payment{border:0;background:transparent;color:#afb2a8;font-size:15px;padding:6px}
 .recent-card.is-empty{padding:0 0 5px}
