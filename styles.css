@@ -245,7 +245,7 @@ body.auth-required .app-shell,body.auth-required .fab{display:none}
   .activity-panel{grid-column:auto}
   .activity-heading{align-items:center;gap:8px}
   .quiet-button{min-height:38px;padding:0 9px;font-size:9px}
-  .payment-row{grid-template-columns:minmax(0,1fr) auto 40px;gap:7px;min-height:58px;padding:9px 0}
+  .payment-row{grid-template-columns:minmax(0,1fr) 84px 40px;gap:7px;min-height:58px;padding:9px 0}
   .payment-info{grid-column:1;grid-row:1/3;grid-template-columns:38px minmax(0,1fr);column-gap:8px}
   .payment-emoji{width:36px;height:36px}
   .payment-category{font-size:12px}
